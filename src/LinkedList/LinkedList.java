@@ -14,6 +14,10 @@ class LinkedList<T extends Comparable<T>> {
         this.tail = null;
     }
 
+    public Node<T> getHead() {
+        return this.head;
+    }
+
     public int size() {
         return this._size;
     }
@@ -141,6 +145,43 @@ class LinkedList<T extends Comparable<T>> {
             currNode = currNode.next;
         }
         return false;
+    }
+
+    public void reverse() {
+        if(this._size == 0 || this._size == 1) {
+            return;
+        }
+        Node<T> nextNode = head;
+        Node<T> prevNode = null;
+
+
+        tail = head;
+
+        while(nextNode != null) {
+            Node<T> tempNode = new Node<>(nextNode.data);
+            tempNode.next = prevNode;
+            prevNode = tempNode;
+            nextNode = nextNode.next;
+        }
+
+        head = prevNode;
+
+    }
+
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        if(this._size == 0) {
+            return string.toString();
+        }
+        Node<T> currNode = this.head;
+        while(currNode != null) {
+            String str = currNode + "->";
+            string.append(str);
+            currNode = currNode.next;
+        }
+
+        string.append("null");
+        return  string.toString();
     }
 
 
