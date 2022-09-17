@@ -1,22 +1,36 @@
-package LinkedList;
+package LinkedList.SinglyLinkedList;
 
 import LinkedList.Node.Node;
 
-class LinkedList<T extends Comparable<T>> {
+public class SinglyLinkedList<T extends Comparable<T>> {
 
     private Node<T> head;
     private Node<T> tail;
 
     private int _size = 0;
 
-    public LinkedList() {
+    public SinglyLinkedList() {
         this.head = null;
         this.tail = null;
+    }
+
+    public SinglyLinkedList(T[] elements) {
+        int len = elements.length;
+        if(len == 0) {
+            this.head = null;
+            this.tail = null;
+        }
+
+        for(T element : elements) {
+            add(element);
+        }
     }
 
     public Node<T> getHead() {
         return this.head;
     }
+
+
 
     public int size() {
         return this._size;
@@ -34,11 +48,18 @@ class LinkedList<T extends Comparable<T>> {
         }
     }
 
+
     private void resetHeadAndTail() {
         this.head = null;
         this.tail = null;
         this._size = 0;
     }
+
+
+    public boolean isEmpty() {
+        return this._size == 0;
+    }
+
 
     public void add(T data) {
         Node<T> node = new Node<>(data);
@@ -58,6 +79,7 @@ class LinkedList<T extends Comparable<T>> {
         currNode.next = node;
         updateIfTail(node);
     }
+
 
     public void insertAt(T data, int pos) {
         Node<T> node = new Node<>(data);
@@ -101,6 +123,8 @@ class LinkedList<T extends Comparable<T>> {
             i++;
         }
 
+        assert prevNode != null;
+
         prevNode.next = currNode.next;
         currNode.next = null;
 
@@ -109,6 +133,7 @@ class LinkedList<T extends Comparable<T>> {
         this._size--;
 
     }
+
 
     public void remove(T data) {
         if(!contains(data)) {
@@ -128,6 +153,8 @@ class LinkedList<T extends Comparable<T>> {
             currNode = currNode.next;
         }
 
+        assert prevNode != null;
+
         prevNode.next = currNode.next;
         currNode.next = null;
 
@@ -135,6 +162,7 @@ class LinkedList<T extends Comparable<T>> {
         updateIfTail(prevNode);
         this._size--;
     }
+
 
     public boolean contains(T data) {
         Node<T> currNode = this.head;
@@ -147,6 +175,7 @@ class LinkedList<T extends Comparable<T>> {
         return false;
     }
 
+
     public void reverse() {
         if(this._size == 0 || this._size == 1) {
             return;
@@ -154,20 +183,19 @@ class LinkedList<T extends Comparable<T>> {
         Node<T> nextNode = head;
         Node<T> prevNode = null;
 
-
         tail = head;
 
         while(nextNode != null) {
-            Node<T> tempNode = new Node<>(nextNode.data);
+            Node<T> tempNode = new Node<>(nextNode);
             tempNode.next = prevNode;
             prevNode = tempNode;
             nextNode = nextNode.next;
         }
-
         head = prevNode;
-
     }
 
+
+    @Override
     public String toString() {
         StringBuilder string = new StringBuilder();
         if(this._size == 0) {
