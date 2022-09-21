@@ -3,6 +3,9 @@ package Strings.StringPermutations;
 import java.util.ArrayList;
 import java.util.List;
 
+//Input = abc
+//Output = [abc, acb, bac, bca, cba, cab]
+
 public class StringPermutations {
 
     public String str;
