@@ -102,10 +102,7 @@ public class NQueens {
             tempCol++;
             tempRow--;
         }
-
         return true;
     }
-
-
 
 }
