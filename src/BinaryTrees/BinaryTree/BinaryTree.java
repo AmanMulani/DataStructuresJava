@@ -4,7 +4,6 @@ import BinaryTrees.Node.Node;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class BinaryTree<T> {
@@ -26,20 +25,39 @@ public class BinaryTree<T> {
         this.head = new Node<>(elements.get(0));
         nodesQueue.add(this.head);
         int i = 1;
-        while(!nodesQueue.isEmpty() && i<elements.size()) {
+        while(!nodesQueue.isEmpty()) {
             Node<T> currElem = nodesQueue.poll();
-            if(i<elements.size()) {
-                Node<T> left = new Node<>(elements.get(i++));
-                currElem.left = left;
-                nodesQueue.add(left);
+            if(currElem == null) {
+                continue;
             }
             if(i<elements.size()) {
-                Node<T> right = new Node<>(elements.get(i++));
+                Node<T> left = elements.get(i) == null ? null : new Node<>(elements.get(i));
+                currElem.left = left;
+                nodesQueue.add(left);
+                i++;
+            }
+            if(i<elements.size()) {
+                Node<T> right = elements.get(i) == null ? null : new Node<>(elements.get(i));
                 currElem.right = right;
                 nodesQueue.add(right);
+                i++;
             }
         }
 
+    }
+
+
+    public int height() {
+        return this.height(this.head);
+    }
+
+
+    private int height(Node<T> node) {
+        if(node == null) {
+            return 0;
+        }
+
+        return Math.max(height(node.left), height(node.right)) + 1;
     }
 
 

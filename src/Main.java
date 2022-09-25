@@ -2,6 +2,7 @@ import Backtracking.NQueens.NQueens;
 import BinaryTrees.BinaryTree.BinaryTree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -9,11 +10,10 @@ public class Main {
 //        NQueens nqueens = new NQueens(4);
 //        nqueens.solveNQueens();
 
-        List<Integer>  elements = new ArrayList<>();
-        elements.add(1);
-        elements.add(2);
-        elements.add(3);
+        List<Integer> elements = Arrays.asList(1, 2, 4, null, null, 5, 7, null, null, null, 3, null, 6, null, null);
+
         BinaryTree<Integer> bTree = new BinaryTree<>(elements);
-        bTree.inOrderTraversal(bTree.head);
+        System.out.println(bTree.height());
+//        bTree.inOrderTraversal(bTree.head);
     }
 }
