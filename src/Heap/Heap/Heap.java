@@ -2,6 +2,7 @@ package Heap.Heap;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Heap<T extends Comparable<T>> {
@@ -14,11 +15,33 @@ public class Heap<T extends Comparable<T>> {
         this.size = 0;
     }
 
+
     public Heap(T[] collection) {
-        this.heap = Arrays.asList(collection);
+        this.heap = new ArrayList<>();
+        Collections.addAll(heap, collection);
         this.size = collection.length;
         minHeapify();
     }
+
+    public void add(T data) {
+        this.heap.add(data);
+        this.size++;
+        int currIndex = this.size - 1;
+
+        while(currIndex >= 0) {
+            heapify(currIndex, this.size);
+            currIndex = parent(currIndex);
+        }
+    }
+
+    private int parent(int idx) {
+        if(idx % 2 == 0) {
+            return idx/2 -1;
+        } else {
+            return (idx-1)/2;
+        }
+    }
+
 
     private void heapify(int index, int size) {
         int left = this.left(index);
@@ -39,6 +62,7 @@ public class Heap<T extends Comparable<T>> {
         }
     }
 
+
     private void minHeapify() {
 
         for(int i = (this.size/2) - 1; i>=0; i--) {
@@ -47,6 +71,7 @@ public class Heap<T extends Comparable<T>> {
 
     }
 
+
     public void heapSort() {
         for(int i = this.size-1; i>=0; i--) {
             swap(0, i);
@@ -54,15 +79,18 @@ public class Heap<T extends Comparable<T>> {
         }
     }
 
+
     public String toString() {
         return heap.toString();
     }
+
 
     private void swap(int i, int j) {
         T temp = this.heap.get(i);
         this.heap.set(i, this.heap.get(j));
         this.heap.set(j, temp);
     }
+
 
     private int left(int index) {
         return 2*index + 1;

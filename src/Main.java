@@ -21,6 +21,9 @@ public class Main {
 
         Integer[] arr = {2,13,4,56,72,8};
         Heap<Integer> heap = new Heap<Integer>(arr);
+        heap.add(10);
+        heap.add(1);
+        heap.add(100);
         heap.heapSort();
         System.out.println(heap);
 
