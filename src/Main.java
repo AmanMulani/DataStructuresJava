@@ -2,6 +2,7 @@ import Backtracking.NQueens.NQueens;
 import BinaryTrees.BinaryTree.BinaryTree;
 import Graphs.AdjacencyListGraph.AdjacencyListGraph;
 import Graphs.AdjacencyMapGraph.AdjacencyMapGraph;
+import Graphs.DijkstraAlgorithm.DijkstraAlgorithm;
 import Graphs.Graph.Graph;
 import Heap.Heap.Heap;
 
@@ -66,5 +67,7 @@ public class Main {
 
         System.out.println(adjMapGraph.bfs(0));
         System.out.println(adjMapGraph.dfs(0));
+
+        DijkstraAlgorithm<Integer> dijkstraAlgorithm = new DijkstraAlgorithm<>(adjMapGraph, 0);
     }
 }

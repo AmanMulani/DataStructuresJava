@@ -1,13 +1,12 @@
 package Graphs.AdjacencyMapGraph;
 
-import Graphs.Graph.Graph;
 import Graphs.Graph.GraphMap;
 
 import java.util.*;
 
 public class AdjacencyMapGraph<T extends Comparable<T>> implements GraphMap<T> {
 
-    Map<T, ArrayList<T>> graph;
+    public Map<T, ArrayList<T>> graph;
 
     public AdjacencyMapGraph() {
         this.graph = new HashMap<>();
