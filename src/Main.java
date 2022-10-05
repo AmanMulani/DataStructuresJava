@@ -1,6 +1,7 @@
 import Backtracking.NQueens.NQueens;
 import BinaryTrees.BinaryTree.BinaryTree;
 import Graphs.AdjacencyListGraph.AdjacencyListGraph;
+import Graphs.AdjacencyMapGraph.AdjacencyMapGraph;
 import Graphs.Graph.Graph;
 import Heap.Heap.Heap;
 
@@ -34,6 +35,7 @@ public class Main {
 
 
 //*************Graph*************//
+        System.out.println("Adjacency List Graph");
         AdjacencyListGraph graph = new AdjacencyListGraph(8);
         graph.addEdge(0, 1, true);
         graph.addEdge(1, 2, true);
@@ -48,5 +50,21 @@ public class Main {
 
         System.out.println(graph.bfs());
         System.out.println(graph.dfs());
+
+        System.out.println("Adjacency Map Graph");
+        AdjacencyMapGraph<Integer> adjMapGraph = new AdjacencyMapGraph<Integer>();
+        adjMapGraph.addEdge(0, 1, true);
+        adjMapGraph.addEdge(1, 2, true);
+        adjMapGraph.addEdge(1, 3, true);
+        adjMapGraph.addEdge(2, 5, true);
+        adjMapGraph.addEdge(2, 3, true);
+        adjMapGraph.addEdge(3, 7, true);
+        adjMapGraph.addEdge(7, 6, true);
+        adjMapGraph.addEdge(5, 8, true);
+        adjMapGraph.addEdge(3, 4, true);
+        adjMapGraph.addEdge(4, 7, true);
+
+        System.out.println(adjMapGraph.bfs(0));
+        System.out.println(adjMapGraph.dfs(0));
     }
 }
