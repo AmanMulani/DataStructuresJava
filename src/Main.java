@@ -49,8 +49,8 @@ public class Main {
         graph.addEdge(3, 4, true);
         graph.addEdge(4, 7, true);
 
-        System.out.println(graph.bfs());
-        System.out.println(graph.dfs());
+        System.out.println("DFS===> " + graph.dfs());
+        System.out.println("BFS===> " + graph.bfs());
 
         System.out.println("Adjacency Map Graph");
         AdjacencyMapGraph<Integer> adjMapGraph = new AdjacencyMapGraph<Integer>();
@@ -65,8 +65,8 @@ public class Main {
         adjMapGraph.addEdge(3, 4, true);
         adjMapGraph.addEdge(4, 7, true);
 
-        System.out.println(adjMapGraph.bfs(0));
-        System.out.println(adjMapGraph.dfs(0));
+        System.out.println("DFS===> " + adjMapGraph.dfs(0));
+        System.out.println("BFS===> " + adjMapGraph.bfs(0));
 
         System.out.println("Dijkstra's Algorithm");
 
@@ -87,8 +87,8 @@ public class Main {
         dijkstraGraph.addEdgeWithWeight(3, 4, 9, true);
         dijkstraGraph.addEdgeWithWeight(5, 4, 10, true);
 
-        DijkstraAlgorithm<Integer> dijkstraAlgorithm = new DijkstraAlgorithm<>(adjMapGraph, 0);
-
-        System.out.println(dijkstraAlgorithm.getDistance(4));
+        DijkstraAlgorithm<Integer> dijkstraAlgorithm = new DijkstraAlgorithm<>(dijkstraGraph, 0);
+        System.out.println("Shortest distance from 0 to 4: " + dijkstraAlgorithm.getDistance(4));
+        dijkstraAlgorithm.displayDistance();
     }
 }

@@ -8,6 +8,7 @@ import java.util.*;
 public class DijkstraAlgorithm<T extends Comparable<T>> {
 
     static class Pair<T> implements Comparable<Pair<T>> {
+
         T node;
         int distance;
         Pair(T n, int d) {
@@ -42,6 +43,7 @@ public class DijkstraAlgorithm<T extends Comparable<T>> {
 
         PriorityQueue<Pair<T>> pq = new PriorityQueue<>();
         pq.add(new Pair<>(this.startPoint, 0));
+        distance.put(this.startPoint, 0);
 
         while(!pq.isEmpty()) {
             Pair<T> node = pq.poll();
@@ -51,13 +53,17 @@ public class DijkstraAlgorithm<T extends Comparable<T>> {
             visited.put(node.node, true);
             for(Node<T> neighbor : this.graph.graph.get(node.node)) {
                 if(!visited.get(neighbor.to)) {
-                    int d = Math.min(distance.get(neighbor.to), distance.get(node.node) + node.distance);
+                    int d = Math.min(distance.get(neighbor.to), distance.get(node.node) + neighbor.weight);
                     pq.add(new Pair<>(neighbor.to, d));
                     distance.put(neighbor.to, d);
                 }
             }
         }
         return distance;
+    }
+
+    public void displayDistance() {
+        System.out.println("Distance Map = " + this.distance);
     }
 
     public int getDistance(T endNode) {
