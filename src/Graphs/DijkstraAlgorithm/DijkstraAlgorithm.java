@@ -1,12 +1,13 @@
 package Graphs.DijkstraAlgorithm;
 
 import Graphs.AdjacencyMapGraph.AdjacencyMapGraph;
+import Graphs.AdjacencyMapGraph.Node;
 
 import java.util.*;
 
 public class DijkstraAlgorithm<T extends Comparable<T>> {
 
-    static class Pair<T extends Comparable<T>> {
+    static class Pair<T> implements Comparable<Pair<T>> {
         T node;
         int distance;
         Pair(T n, int d) {
@@ -14,6 +15,7 @@ public class DijkstraAlgorithm<T extends Comparable<T>> {
             this.distance = d;
         }
 
+        @Override
         public int compareTo(Pair<T> p2) {
             return this.distance - p2.distance;
         }
@@ -47,10 +49,11 @@ public class DijkstraAlgorithm<T extends Comparable<T>> {
                 continue;
             }
             visited.put(node.node, true);
-            for(T neighbor : this.graph.graph.get(node.node)) {
-                if(!visited.get(neighbor)) {
-                    int d = Math.min(distance.get(neighbor), distance.get(node.node) + node.distance);
-                    distance.put(neighbor, d);
+            for(Node<T> neighbor : this.graph.graph.get(node.node)) {
+                if(!visited.get(neighbor.to)) {
+                    int d = Math.min(distance.get(neighbor.to), distance.get(node.node) + node.distance);
+                    pq.add(new Pair<>(neighbor.to, d));
+                    distance.put(neighbor.to, d);
                 }
             }
         }

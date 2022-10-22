@@ -68,6 +68,27 @@ public class Main {
         System.out.println(adjMapGraph.bfs(0));
         System.out.println(adjMapGraph.dfs(0));
 
+        System.out.println("Dijkstra's Algorithm");
+
+        AdjacencyMapGraph<Integer> dijkstraGraph = new AdjacencyMapGraph<>();
+
+        dijkstraGraph.addEdgeWithWeight(0, 1, 4, true);
+        dijkstraGraph.addEdgeWithWeight(0, 7, 8, true);
+        dijkstraGraph.addEdgeWithWeight(1, 7, 11, true);
+        dijkstraGraph.addEdgeWithWeight(1, 2, 8, true);
+        dijkstraGraph.addEdgeWithWeight(2, 8, 2, true);
+        dijkstraGraph.addEdgeWithWeight(2, 3, 7, true);
+        dijkstraGraph.addEdgeWithWeight(7, 8, 7, true);
+        dijkstraGraph.addEdgeWithWeight(7, 6, 1, true);
+        dijkstraGraph.addEdgeWithWeight(8, 6, 6, true);
+        dijkstraGraph.addEdgeWithWeight(2, 5, 4, true);
+        dijkstraGraph.addEdgeWithWeight(6, 5, 2, true);
+        dijkstraGraph.addEdgeWithWeight(3, 5, 14, true);
+        dijkstraGraph.addEdgeWithWeight(3, 4, 9, true);
+        dijkstraGraph.addEdgeWithWeight(5, 4, 10, true);
+
         DijkstraAlgorithm<Integer> dijkstraAlgorithm = new DijkstraAlgorithm<>(adjMapGraph, 0);
+
+        System.out.println(dijkstraAlgorithm.getDistance(4));
     }
 }

@@ -4,26 +4,39 @@ import Graphs.Graph.GraphMap;
 
 import java.util.*;
 
+
+
 public class AdjacencyMapGraph<T extends Comparable<T>> implements GraphMap<T> {
 
-    public Map<T, ArrayList<T>> graph;
+
+    public Map<T, ArrayList<Node<T>>> graph;
 
     public AdjacencyMapGraph() {
         this.graph = new HashMap<>();
     }
 
     public void addEdge(T from, T to, boolean bidirectional) {
-        addEdge(from, to);
+        addEdge(from, to, 0);
         if(bidirectional) {
-            addEdge(to, from);
+            addEdge(to, from, 0);
         }
     }
 
-    private void addEdge(T node1, T node2) {
-        if(!this.graph.containsKey(node1)) {
-            this.graph.put(node1, new ArrayList<T>());
+    public void addEdgeWithWeight(T from, T to, int weight, boolean bidirectional) {
+        addEdge(from, to, weight);
+
+        if(bidirectional) {
+            addEdge(to, from, weight);
         }
-        this.graph.get(node1).add(node2);
+    }
+
+    private void addEdge(T node1, T node2, int weight) {
+        if(!this.graph.containsKey(node1)) {
+            ArrayList<Node<T>> val= new ArrayList<>();
+            this.graph.put(node1, val);
+        }
+
+        this.graph.get(node1).add(new Node(node1, node2, weight));
     }
 
 
@@ -60,9 +73,9 @@ public class AdjacencyMapGraph<T extends Comparable<T>> implements GraphMap<T> {
         dfs.add(currNode);
 
         if(this.graph.containsKey(currNode)) {
-            for(T neighbor : this.graph.get(currNode)) {
-                if(!visited.get(neighbor)) {
-                    dfs(neighbor, dfs, visited);
+            for(Node<T> neighbor : this.graph.get(currNode)) {
+                if(!visited.get(neighbor.to)) {
+                    dfs(neighbor.to, dfs, visited);
                 }
             }
         }
@@ -87,10 +100,10 @@ public class AdjacencyMapGraph<T extends Comparable<T>> implements GraphMap<T> {
             T currNode = bfsQueue.poll();
             bfs.add(currNode);
             if(this.graph.containsKey(currNode)) {
-                for(T neighbor : this.graph.get(currNode)) {
-                    if(!visited.get(neighbor)) {
-                        bfsQueue.add(neighbor);
-                        visited.put(neighbor, true);
+                for(Node<T> neighbor : this.graph.get(currNode)) {
+                    if(!visited.get(neighbor.to)) {
+                        bfsQueue.add(neighbor.to);
+                        visited.put(neighbor.to, true);
                     }
                 }
             }
