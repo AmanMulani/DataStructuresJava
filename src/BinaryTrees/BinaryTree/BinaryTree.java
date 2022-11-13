@@ -2,6 +2,7 @@ package BinaryTrees.BinaryTree;
 
 import BinaryTrees.Node.Node;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -46,6 +47,24 @@ public class BinaryTree<T> {
 
     }
 
+
+    public List<List<Node<T>>> breathFirstTraversal() {
+        List<List<Node<T>>> nodes = new ArrayList<>();
+        List<Node<T>> currLevelNodes = new ArrayList<>();
+
+        Queue<Node<T>> qNodes = new LinkedList<>();
+
+        currLevelNodes.add(this.head);
+        qNodes.add(this.head);
+
+        while (!qNodes.isEmpty()) {
+            Node<T> node = qNodes.poll();
+
+            
+        }
+
+        return nodes;
+    }
 
     public int height() {
         return this.height(this.head);
