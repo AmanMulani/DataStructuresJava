@@ -11,4 +11,8 @@ public class Node<T> {
         this.left = null;
         this.right = null;
     }
+
+    public String toString() {
+        return String.valueOf(data);
+    }
 }

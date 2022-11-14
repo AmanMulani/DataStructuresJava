@@ -50,19 +50,24 @@ public class BinaryTree<T> {
 
     public List<List<Node<T>>> breathFirstTraversal() {
         List<List<Node<T>>> nodes = new ArrayList<>();
-        List<Node<T>> currLevelNodes = new ArrayList<>();
-
         Queue<Node<T>> qNodes = new LinkedList<>();
-
-        currLevelNodes.add(this.head);
         qNodes.add(this.head);
-
         while (!qNodes.isEmpty()) {
-            Node<T> node = qNodes.poll();
+            List<Node<T>> currLevelNodes = new ArrayList<>();
+            int qSize = qNodes.size();
+            for(int i = 0; i<qSize; i++) {
+                assert qNodes.peek() != null;
+                if(qNodes.peek().left != null) {
+                    qNodes.add(qNodes.peek().left);
+                }
+                if(qNodes.peek().right != null) {
+                    qNodes.add(qNodes.peek().right);
+                }
+                currLevelNodes.add(qNodes.poll());
+            }
 
-            
+            nodes.add(currLevelNodes);
         }
-
         return nodes;
     }
 
