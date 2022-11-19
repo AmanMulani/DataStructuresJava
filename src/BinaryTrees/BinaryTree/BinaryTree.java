@@ -70,6 +70,7 @@ public class BinaryTree<T> {
         }
         return nodes;
     }
+    
 
     public int height() {
         return this.height(this.head);
