@@ -20,7 +20,9 @@ public class Main {
 //*************Binary Trees***************//
         List<Integer> elements = Arrays.asList(1, 2, 4, null, null, 5, 7, null, null, null, 3, null, 6, null, null);
         BinaryTree<Integer> bTree = new BinaryTree<>(elements);
+
         System.out.println("Height: " + bTree.height());
+        System.out.println("Is Tree Balanced: " + bTree.isBalanced());
 
         System.out.println("Level Order Traversal" + bTree.breathFirstTraversal());
 

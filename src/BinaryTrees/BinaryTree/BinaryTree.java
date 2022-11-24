@@ -84,6 +84,31 @@ public class BinaryTree<T> {
     }
 
 
+    public boolean isBalanced() {
+        return isBalanced(this.head) != -1;
+    }
+
+
+    private int isBalanced(Node<T> node) {
+        //Function returns -1 if the tree is not balanced.
+        //Else returns the height of the tree.
+
+        if(node == null)
+            return 0;
+
+        int leftHeight = isBalanced(node.left);
+        int rightHeight = isBalanced(node.right);
+
+        if(leftHeight == -1 || rightHeight == -1) {
+            return -1;
+        }
+        if(Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        }
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+
     public void iterativePreorderTraversal(Node<T> node) {
         Stack<Node<T>> stack = new Stack<>();
         List<Node<T>> preOrderTraversal = new ArrayList<>();
