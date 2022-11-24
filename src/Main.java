@@ -25,6 +25,8 @@ public class Main {
         System.out.println("Diameter: " + bTree.diameter(bTree.head));
         System.out.println("Is Tree Balanced: " + bTree.isBalanced());
 
+        System.out.println("Max Path: " + bTree.findMaxPath(bTree.head));
+
 
         System.out.println("Level Order Traversal" + bTree.breathFirstTraversal());
 

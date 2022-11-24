@@ -231,4 +231,24 @@ public class BinaryTree<T> {
         System.out.println(postOrder);
 
     }
+
+
+    public int findMaxPath(Node<T> node) {
+        int[] max = new int[]{Integer.MIN_VALUE};
+        findMaxPath(node, max);
+        return max[0];
+    }
+
+    private int findMaxPath(Node<T> node, int[] max) {
+        if(node == null)
+            return 0;
+
+        int leftMaxPath = Math.max(0, findMaxPath(node.left, max));
+        int rightMaxPath = Math.max(0, findMaxPath(node.right, max));
+
+        max[0] = Math.max(max[0], (int)node.data + leftMaxPath +  rightMaxPath);
+
+        return (int)node.data + Math.max(leftMaxPath, rightMaxPath);
+    }
+
 }
