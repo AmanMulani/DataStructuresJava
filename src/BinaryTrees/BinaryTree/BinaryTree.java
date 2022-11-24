@@ -2,10 +2,8 @@ package BinaryTrees.BinaryTree;
 
 import BinaryTrees.Node.Node;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.sql.Array;
+import java.util.*;
 
 public class BinaryTree<T> {
 
@@ -86,6 +84,32 @@ public class BinaryTree<T> {
     }
 
 
+    public void iterativePreorderTraversal(Node<T> node) {
+        Stack<Node<T>> stack = new Stack<>();
+        List<Node<T>> preOrderTraversal = new ArrayList<>();
+
+        if(node == null)  {
+            System.out.println(preOrderTraversal);
+        }
+
+        stack.push(node);
+        while(!stack.isEmpty()) {
+            Node<T> currNode = stack.pop();
+
+            preOrderTraversal.add(currNode);
+
+            if(currNode.right != null)
+                stack.push(currNode.right);
+
+            if(currNode.left != null)
+                stack.push(currNode.left);
+
+        }
+
+        System.out.println(preOrderTraversal.toString());
+    }
+
+
     public void preOrderTraversal(Node<T> node) {
         if(node == null) {
             return;
@@ -93,6 +117,25 @@ public class BinaryTree<T> {
         System.out.println(node.data.toString());
         preOrderTraversal(node.left);
         preOrderTraversal(node.right);
+    }
+
+
+    public void iterativeInOrder(Node<T> node) {
+        Stack<Node<T>> stack = new Stack<>();
+        List<Node<T>> inOrder = new ArrayList<>();
+        while(true) {
+            if(node != null) {
+                stack.add(node);
+                node = node.left;
+            } else {
+                if(stack.isEmpty())
+                    break;
+                node = stack.pop();
+                inOrder.add(node);
+                node = node.right;
+            }
+        }
+        System.out.println(inOrder);
     }
 
 
@@ -113,5 +156,33 @@ public class BinaryTree<T> {
         postOrderTraversal(node.left);
         postOrderTraversal(node.right);
         System.out.println(node.data.toString());
+    }
+
+
+    public void iterativePostOrderTraversal(Node<T> node) {
+        Stack<Node<T>> stack1 = new Stack<>();
+        Stack<Node<T>> stack2 = new Stack<>();
+        List<Node<T>> postOrder = new ArrayList<>();
+
+        if(node == null) {
+            System.out.println("[]");
+            return;
+        }
+        stack1.add(node);
+        while(!stack1.isEmpty()) {
+            Node<T> currNode = stack1.pop();
+            if(currNode.left != null)
+                stack1.add(currNode.left);
+
+            if(currNode.right != null)
+                stack1.add(currNode.right);
+
+            stack2.add(currNode);
+        }
+        while (!stack2.isEmpty()) {
+            postOrder.add(stack2.pop());
+        }
+        System.out.println(postOrder);
+
     }
 }

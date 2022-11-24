@@ -13,26 +13,40 @@ public class Main {
     public static void main(String[] args) {
 
 //*************Backtracking: N-Queens***************//
-//
-//        NQueens nqueens = new NQueens(4);
-//        nqueens.solveNQueens();
+
+        NQueens nqueens = new NQueens(4);
+        nqueens.solveNQueens();
 
 //*************Binary Trees***************//
-//        List<Integer> elements = Arrays.asList(1, 2, 4, null, null, 5, 7, null, null, null, 3, null, 6, null, null);
-//        BinaryTree<Integer> bTree = new BinaryTree<>(elements);
-//        System.out.println(bTree.breathFirstTraversal());
-//        System.out.println(bTree.height());
-//        bTree.inOrderTraversal(bTree.head);
+        List<Integer> elements = Arrays.asList(1, 2, 4, null, null, 5, 7, null, null, null, 3, null, 6, null, null);
+        BinaryTree<Integer> bTree = new BinaryTree<>(elements);
+        System.out.println("Height: " + bTree.height());
 
+        System.out.println("Level Order Traversal" + bTree.breathFirstTraversal());
+
+        System.out.println("Recursive Preorder Traversal: ");
+        bTree.preOrderTraversal(bTree.head);
+        System.out.println("Iterative Preorder Traversal: ");
+        bTree.iterativePreorderTraversal(bTree.head);
+
+        System.out.println("Recursive Inorder Traversal: ");
+        bTree.inOrderTraversal(bTree.head);
+        System.out.println("Iterative Inorder Traversal: ");
+        bTree.iterativeInOrder(bTree.head);
+
+        System.out.println("Recursive Postorder Traversal");
+        bTree.postOrderTraversal(bTree.head);
+        System.out.println("Iterative Postorder Traversal");
+        bTree.iterativePostOrderTraversal(bTree.head);
 
 //*************Heap***************//
-//        Integer[] arr = {2,13,4,56,72,8};
-//        Heap<Integer> heap = new Heap<Integer>(arr);
-//        heap.add(10);
-//        heap.add(1);
-//        heap.add(100);
-//        heap.heapSort();
-//        System.out.println(heap);
+        Integer[] arr = {2,13,4,56,72,8};
+        Heap<Integer> heap = new Heap<Integer>(arr);
+        heap.add(10);
+        heap.add(1);
+        heap.add(100);
+        heap.heapSort();
+        System.out.println(heap);
 
 
 //*************Graph*************//
