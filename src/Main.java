@@ -22,7 +22,9 @@ public class Main {
         BinaryTree<Integer> bTree = new BinaryTree<>(elements);
 
         System.out.println("Height: " + bTree.height());
+        System.out.println("Diameter: " + bTree.diameter(bTree.head));
         System.out.println("Is Tree Balanced: " + bTree.isBalanced());
+
 
         System.out.println("Level Order Traversal" + bTree.breathFirstTraversal());
 

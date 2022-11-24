@@ -109,6 +109,27 @@ public class BinaryTree<T> {
     }
 
 
+    public int diameter(Node<T> root) {
+        int[] d = new int[1];
+        diameterHeightUtil(root, d);
+        return d[0];
+    }
+
+
+    private int diameterHeightUtil(Node<T> node, int[] d) {
+        if(node == null) {
+            return 0;
+        }
+
+        int leftHeight = diameterHeightUtil(node.left, d);
+        int rightHeight = diameterHeightUtil(node.right, d);
+
+        d[0] = Math.max(d[0], leftHeight + rightHeight);
+
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+
     public void iterativePreorderTraversal(Node<T> node) {
         Stack<Node<T>> stack = new Stack<>();
         List<Node<T>> preOrderTraversal = new ArrayList<>();
