@@ -3,9 +3,8 @@ import BinaryTrees.BinaryTree.BinaryTree;
 import Graphs.AdjacencyListGraph.AdjacencyListGraph;
 import Graphs.AdjacencyMapGraph.AdjacencyMapGraph;
 import Graphs.DijkstraAlgorithm.DijkstraAlgorithm;
-import Graphs.Graph.Graph;
 import Heap.Heap.Heap;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,28 +21,33 @@ public class Main {
         BinaryTree<Integer> bTree = new BinaryTree<>(elements);
 
         System.out.println("Height: " + bTree.height());
-        System.out.println("Diameter: " + bTree.diameter(bTree.head));
+        System.out.println("Diameter: " + bTree.diameter(bTree.root));
         System.out.println("Is Tree Balanced: " + bTree.isBalanced());
 
-        System.out.println("Max Path: " + bTree.findMaxPath(bTree.head));
+        System.out.println("Max Path: " + bTree.findMaxPath(bTree.root));
 
 
         System.out.println("Level Order Traversal" + bTree.breathFirstTraversal());
 
         System.out.println("Recursive Preorder Traversal: ");
-        bTree.preOrderTraversal(bTree.head);
+        bTree.preOrderTraversal(bTree.root);
         System.out.println("Iterative Preorder Traversal: ");
-        bTree.iterativePreorderTraversal(bTree.head);
+        bTree.iterativePreorderTraversal(bTree.root);
 
         System.out.println("Recursive Inorder Traversal: ");
-        bTree.inOrderTraversal(bTree.head);
+        bTree.inOrderTraversal(bTree.root);
         System.out.println("Iterative Inorder Traversal: ");
-        bTree.iterativeInOrder(bTree.head);
+        bTree.iterativeInOrder(bTree.root);
 
         System.out.println("Recursive Postorder Traversal");
-        bTree.postOrderTraversal(bTree.head);
+        bTree.postOrderTraversal(bTree.root);
         System.out.println("Iterative Postorder Traversal");
-        bTree.iterativePostOrderTraversal(bTree.head);
+        bTree.iterativePostOrderTraversal(bTree.root);
+
+        System.out.println("Inverting the tree");
+        bTree.invertBinaryTree();
+        System.out.println("New preorder traversal: ");
+        bTree.preOrderTraversal(bTree.root);
 
 //*************Heap***************//
         Integer[] arr = {2,13,4,56,72,8};

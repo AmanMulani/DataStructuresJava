@@ -2,12 +2,11 @@ package BinaryTrees.BinaryTree;
 
 import BinaryTrees.Node.Node;
 
-import java.sql.Array;
 import java.util.*;
 
 public class BinaryTree<T> {
 
-    public Node<T> head;
+    public Node<T> root;
 
     public BinaryTree(List<T> elements) {
         buildBinaryTree(elements);
@@ -16,13 +15,13 @@ public class BinaryTree<T> {
 
     private void buildBinaryTree(List<T> elements) {
         if(elements.size() == 0) {
-            this.head = null;
+            this.root = null;
             return;
         }
 
         Queue<Node<T>> nodesQueue = new LinkedList<>();
-        this.head = new Node<>(elements.get(0));
-        nodesQueue.add(this.head);
+        this.root = new Node<>(elements.get(0));
+        nodesQueue.add(this.root);
         int i = 1;
         while(!nodesQueue.isEmpty()) {
             Node<T> currElem = nodesQueue.poll();
@@ -49,7 +48,7 @@ public class BinaryTree<T> {
     public List<List<Node<T>>> breathFirstTraversal() {
         List<List<Node<T>>> nodes = new ArrayList<>();
         Queue<Node<T>> qNodes = new LinkedList<>();
-        qNodes.add(this.head);
+        qNodes.add(this.root);
         while (!qNodes.isEmpty()) {
             List<Node<T>> currLevelNodes = new ArrayList<>();
             int qSize = qNodes.size();
@@ -71,7 +70,7 @@ public class BinaryTree<T> {
     
 
     public int height() {
-        return this.height(this.head);
+        return this.height(this.root);
     }
 
 
@@ -85,7 +84,7 @@ public class BinaryTree<T> {
 
 
     public boolean isBalanced() {
-        return isBalanced(this.head) != -1;
+        return isBalanced(this.root) != -1;
     }
 
 
@@ -152,7 +151,7 @@ public class BinaryTree<T> {
 
         }
 
-        System.out.println(preOrderTraversal.toString());
+        System.out.println(preOrderTraversal);
     }
 
 
@@ -249,6 +248,28 @@ public class BinaryTree<T> {
         max[0] = Math.max(max[0], (int)node.data + leftMaxPath +  rightMaxPath);
 
         return (int)node.data + Math.max(leftMaxPath, rightMaxPath);
+    }
+
+
+    public void invertBinaryTree() {
+        Node<T> node = this.root;
+        Queue<Node<T>> queue = new LinkedList<>();
+        queue.add(node);
+        while(!queue.isEmpty()) {
+            Node<T> currNode = queue.poll();
+
+            if(currNode.left != null) {
+                queue.add(currNode.left);
+            }
+            if(currNode.right != null) {
+                queue.add(currNode.right);
+            }
+
+            Node<T> tempNode = currNode.left;
+            currNode.left = currNode.right;
+            currNode.right = tempNode;
+        }
+
     }
 
 }
