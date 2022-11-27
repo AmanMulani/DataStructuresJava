@@ -270,6 +270,7 @@ public class BinaryTree<T> {
             currNode.right = tempNode;
         }
 
+
     }
 
 }
